@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>4 Image Groups with One Slider</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    width: 90%;
+    margin: auto;
+}
+
+img {
+    width: 95%;
+    border: 1px solid #ccc;
+}
+
+button {
+    margin: 10px;
+    padding: 8px 14px;
+}
+
+.slider-box {
+    margin: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Image Sequence Visualization</h2>
+
+<button onclick="play()">Play</button>
+<button onclick="pause()">Pause</button>
+
+<div class="slider-box">
+<input
+type="range"
+id="slider"
+min="1"
+max="16"
+step="1"
+value="1"
+oninput="setFrame(this.value)"
+style="width:60%;">
+<br>
+Frame: <span id="frameLabel">1</span>
+</div>
+
+<div class="grid">
+
+<div><img id="viewerA"></div>
+<div><img id="viewerB"></div>
+<div><img id="viewerC"></div>
+<div><img id="viewerD"></div>
+
+</div>
+
+<script>
+
+// ---------------- CONFIG ----------------
+const frameCount = 6;
+const fps = 1;
+// ----------------------------------------
+
+// Create image lists
+const framesA = [];
+const framesB = [];
+const framesC = [];
+const framesD = [];
+
+for (let i = 1; i <= frameCount; i++) {
+
+    let num = String(i).padStart(3, "0");
+
+    framesA.push("Fig_KH/Fig_" + num + ".png");
+    framesB.push("Fig_agg/Fig_" + num + ".png");
+    framesC.push("Fig_KH_zoom/Fig_" + num + ".png");
+    framesD.push("Fig_agg_zoom/Fig_" + num + ".png");
+}
+
+let index = 0;
+let timer = null;
+
+// ---------------- SHOW ALL ----------------
+function showFrame(i) {
+
+    index = i;
+
+    document.getElementById("viewerA").src = framesA[index];
+    document.getElementById("viewerB").src = framesB[index];
+    document.getElementById("viewerC").src = framesC[index];
+    document.getElementById("viewerD").src = framesD[index];
+
+    document.getElementById("slider").value = index + 1;
+    document.getElementById("frameLabel").innerText = index + 1;
+}
+
+// ---------------- PLAY ----------------
+function play() {
+
+    if (timer) return;
+
+    timer = setInterval(() => {
+
+        let next = (index + 1) % frameCount;
+        showFrame(next);
+
+    }, 1000 / fps);
+}
+
+// ---------------- PAUSE ----------------
+function pause() {
+    clearInterval(timer);
+    timer = null;
+}
+
+// ---------------- SLIDER ----------------
+function setFrame(value) {
+    pause();
+    showFrame(value - 1);
+}
+
+// Start on frame 1
+showFrame(0);
+
+</script>
+
+</body>
+</html>
