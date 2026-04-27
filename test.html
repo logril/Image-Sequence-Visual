@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<!-- ----------------------------------------------------Change the title of the page (tab name)-------------------------------- -->
 <title>4 Image Groups with One Slider</title>
 
 <style>
@@ -36,18 +37,19 @@ button {
 </head>
 
 <body>
-
+<!--  -------------------------------------------------Main title of the page---------------------------------------- -->
 <h2>Image Sequence Visualization</h2>
 
 <button onclick="play()">Play</button>
 <button onclick="pause()">Pause</button>
 
 <div class="slider-box">
+<!-- --------------------------------------------Change to the maximum number of images (16)-------------------------------- -->
 <input
 type="range"
 id="slider"
 min="1"
-max="16"
+max="6"
 step="1"
 value="1"
 oninput="setFrame(this.value)"
@@ -68,7 +70,7 @@ Frame: <span id="frameLabel">1</span>
 <script>
 
 // ---------------- CONFIG ----------------
-const frameCount = 6;
+const frameCount = 6;        // ------------------Change to maximum no of images (16)---------------------------------
 const fps = 1;
 // ----------------------------------------
 
