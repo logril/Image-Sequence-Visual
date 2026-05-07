@@ -38,7 +38,7 @@
       type="range"
       id="sliderA"
       min="1"
-      max="16"
+      max="6"
       step="1"
       value="1"
       oninput="setFrameA(this.value)"
@@ -54,7 +54,7 @@
       type="range"
       id="sliderB"
       min="1"
-      max="16"
+      max="6"
       step="1"
       value="1"
       oninput="setFrameB(this.value)"
@@ -67,7 +67,7 @@
 
 <script>
   // ---- CONFIGURATION ----
-  const frameCount = 16;      // change this src="Fig_KH/Fig_001.png"
+  const frameCount = 6;      // change this src="Fig_KH/Fig_001.png"
   const fps = 1;            // frames per second
   //const prefix = "frame_";
   //const extension = ".jpg";
@@ -78,10 +78,10 @@
   const framesB = [];
   for (let i = 1; i <= frameCount; i++) {
     framesA.push(
-      "Fig_KH/Fig_" + String(i).padStart(3, "0") + ".png"
+      "Fig_KH_Freq/Fig_" + String(i).padStart(3, "0") + ".png"
     );
     framesB.push(
-      "Fig_agg/Fig_" + String(i).padStart(3, "0") + ".png"
+      "Fig_agg_Freq/Fig_" + String(i).padStart(3, "0") + ".png"
     );
   }
 
